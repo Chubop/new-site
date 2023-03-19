@@ -1,0 +1,3 @@
+const college_experience = 'I studied computer science at the Rochester Institute of Technology. While there, I was the Team Lead of HackDartmouth Team and the winner of "Lil\' Lexie" a NLP rap-bot AI Alexa Skill using Python, Flask, and AWS Lambda. I was also a Board Member of RIT Artificial Intelligence Club. I did an Independent Study where I created a recurrent neural network for predictive text for "Game of Thrones" novels using Python. I developed specialized expertise in cloud-native NLP and relevant coursework included Cybersecurity, Web & Mobile Design, Data Structures and Algorithms.';
+
+export default college_experience;

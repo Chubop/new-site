@@ -1,0 +1,3 @@
+const lil_lexie_project = '"Lil\' Lexie" was a winning project that I created with 3 other team members during HackDartmouth, an annual hackathon event hosted at Dartmouth College. Using Amazon\'s Alexa, natural language processing, and some concepts from discrete mathematics, I programmed a Context-Free Grammar (CFG) that worked with artificial intelligence that would engage in an AI-generated rap battle with a human opponent.';
+
+export default lil_lexie_project;

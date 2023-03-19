@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { createTheme, Grid, ThemeProvider } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: 'Montserrat',
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Grid container justifyContent="center" justifyItems="center" alignItems="center">
+        <Grid item>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
 

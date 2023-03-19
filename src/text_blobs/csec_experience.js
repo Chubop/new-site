@@ -1,0 +1,2 @@
+const csec_experience = 'I was subcontracted to the Tor Project where I worked on patching website fingerprinting security flaws in the Tor Network. I implemented a machine learning model called GrowingGAN by NVIDIA, repurposing it for network trace data using Tensorflow. I also supported the privacy research team in discovering low-overhead methods to obfuscate malicious web tracking. My work was presented and recommended to senior cross-functional and cross-organizational teams at events.'
+export default csec_experience;
