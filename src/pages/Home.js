@@ -1,7 +1,8 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Snowfall from 'react-snowfall';
 import AppHeader from '../components/AppHeader';
+import LoadingScreen from '../components/LoadingScreen';
 import MovingImage from '../components/MovingImage';
 import PageModal from '../components/PageModal';
 import groundOne from '../images/ground1.png';
@@ -17,9 +18,11 @@ import Projects from '../modals/Projects';
 
 export default function Home(props){
 
+    const [loaded, setLoaded] = useState(false);
     const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
     const [currModal, setCurrModal] = useState();
+
+    const handleClose = () => setOpen(false);
 
     const modals = {
         'experience': <Experience/>,
@@ -35,8 +38,33 @@ export default function Home(props){
     // play wind howl sound effect
     new Audio('../sounds/wind_howl.mp3').play();
 
+    useEffect(() => {
+        const images = document.querySelectorAll('img');
+        const promises = [];
+    
+        images.forEach((image) => {
+          promises.push(
+            new Promise((resolve, reject) => {
+              const img = new Image();
+              img.src = image.src;
+              img.onload = resolve;
+              img.onerror = reject;
+            })
+          );
+        });
+    
+        Promise.all(promises)
+          .then(() => {
+            setLoaded(true);
+          })
+          .catch((err) => {
+            console.error('Error loading images: ', err);
+          });
+      }, []);
+
     return(
         <>
+            <LoadingScreen loaded={loaded}/>
             <PageModal open={open} handleClose={handleClose}>
                 {currModal}
             </PageModal>
@@ -97,9 +125,7 @@ export default function Home(props){
                 <MovingImage src={tree} start={0} offset={10} lg/>
                 <Snowfall color='#e3e3e3' snowflakeCount={SNOWFLAKE_COUNT}/>
 
-
-
-                <img src={snowbg} style={{width: window.innerWidth}}/>
+                <img src={snowbg} style={{width: window.innerWidth > 1500 ? window.innerWidth : 1500}}/>
             </Box>
         </>
     )
