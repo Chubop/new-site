@@ -63,7 +63,7 @@ export default function Home(props){
       }, []);
 
     return(
-        <>
+        <div style={{overflow: 'hidden'}}>
             <LoadingScreen loaded={loaded}/>
             <PageModal open={open} handleClose={handleClose}>
                 {currModal}
@@ -96,37 +96,17 @@ export default function Home(props){
                 </Grid>
             </Box>
             {/* background */}
-            <Box width={'100%'} height={'100%'}>
-                <Snowfall color='#fff' snowflakeCount={SNOWFLAKE_COUNT}/>
-                {/* ground */}
-                <MovingImage src={groundTwo} offset={225} start={-300} isFrozen/>
-                <MovingImage src={groundOne} offset={350} start={-300} isFrozen/>
-
-                {/* back layer */}
-                <MovingImage src={tree} start={1500} offset={0} scale={0.3} sm/>
-                <MovingImage src={tree2} start={800} offset={5} scale={0.01} sm/>
-                <MovingImage src={tree3} start={400} offset={10} sm/>
-                <MovingImage src={tree2} start={300} offset={30} sm/>
-                <MovingImage src={tree} start={0} offset={40} sm/>
-                <MovingImage src={log} start={-350} offset={225} sm height={30}/>
-
-                {/* middle layer */}
-                <MovingImage src={tree3} start={1800} offset={0} scale={0.09} md/>
-                <MovingImage src={tree} start={900} offset={30} md/>
-                <MovingImage src={snowFox} start={650} offset={240} isLottie md/>
-                <MovingImage src={tree3} start={600} offset={10} scale={0.02} md/>
-                <MovingImage src={tree2} start={40} offset={10} md/>
-                <MovingImage src={log} start={0} offset={300} height={50} speed='md'/>
-                <Snowfall color='#f2f2f2' snowflakeCount={SNOWFLAKE_COUNT}/>
-
-                {/* front layer */}
-                <MovingImage src={tree} start={1500} offset={0} scale={0.05} lg/>
+                            {/* front layer */}
+                {/* <MovingImage src={tree} start={1500} offset={0} scale={0.05} lg/>
                 <MovingImage src={tree2} start={500} offset={0} scale={0.03} lg/>
-                <MovingImage src={tree} start={0} offset={10} lg/>
+                <MovingImage src={tree} start={0} offset={10} lg/> */}
                 <Snowfall color='#e3e3e3' snowflakeCount={SNOWFLAKE_COUNT}/>
-
-                <img src={snowbg} style={{width: window.innerWidth > 1500 ? window.innerWidth : 1500}}/>
+            <Box>
+                {/* <MovingImage src={groundTwo} offset={225} isFrozen/> */}
             </Box>
-        </>
+            <Box sx={{width: '100%', height: '100%'}}>
+                <img src={snowbg} style={{width: 'auto', maxWidth: '100%'}}/>
+            </Box>
+        </div>
     )
 }
