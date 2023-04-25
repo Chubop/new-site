@@ -44,25 +44,26 @@ function MovingImage({
 
     const [right, setRight] = useState(start);
 
+
     useLayoutEffect(() => {
         let currXPos = ref.current.getBoundingClientRect().x;
         setXPos(currXPos);
-    });
-
-    useEffect(() => {
+      }, [ref]);
+      
+      useEffect(() => {
         // if right gets too high, send back to 0
-        if(xPos < 0 - (ref.current.width * 2)){
-            setRight(-300 - ref.current.width);
+        if (xPos < 0 - (ref.current.width * 2)) {
+          setRight(-300 - ref.current.width);
         }
-    }, [right, MOVE_RATE]);
-
-    useEffect(() => {
-        // else, continue to add to the right value
+      }, [xPos, ref, MOVE_RATE]);
+      
+      useEffect(() => {
         const interval = setInterval(() => {
-            setRight(right + MOVE_RATE * 1)
+          setXPos(prevXPos => prevXPos - MOVE_RATE);
         }, 5);
+      
         return () => clearInterval(interval);
-    }, [xPos, MOVE_RATE]);
+      }, [MOVE_RATE]);
 
 
     if(isLottie){
@@ -72,7 +73,6 @@ function MovingImage({
             position="relative" style={{
                 position: 'absolute',
                 right: (right),
-                top: 250 + (y / 50) + offset,
                 height: imgHeight * (imgScale + 1)
             }}>
                 {isLottie && 
@@ -92,7 +92,7 @@ function MovingImage({
                 {Math.round(xPos)}
             </a> */}
             <img src={src} 
-            style={{height: imgHeight * (imgScale + 1)}}
+            style={{height: imgHeight * (imgScale + 1), transform: `translateX(${xPos}px)`}}
             alt="Moving Image" 
             ref={ref}
             />
